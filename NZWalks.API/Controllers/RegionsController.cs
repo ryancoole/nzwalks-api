@@ -25,5 +25,21 @@ namespace NZWalks.API.Controllers
 
             return Ok(regions);
         }
+
+        // GET: https://localhost:7139/api/Regions/D164CA1D-DEB7-4A77-86C5-FB9A7148C835
+        [HttpGet]
+        [Route("{Id:Guid}")]
+        public IActionResult GetById([FromRoute]Guid Id)
+        {
+            //var region = dbContext.Regions.FirstOrDefault(x => x.Id == Id);
+            var region = dbContext.Regions.Find(Id);
+
+            if (region == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(region);
+        }
     }
 }
