@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
+using NZWalks.API.Models.DTO;
 
 namespace NZWalks.API.Controllers
 {
@@ -21,25 +22,52 @@ namespace NZWalks.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var regions = dbContext.Regions.ToList();
+            // Get data from database - Domain Models
+            var regionsDomain = dbContext.Regions.ToList();
 
-            return Ok(regions);
+            // Map domain models to DTOs
+            var regionsDto = new List<RegionDto>();
+
+            foreach (var regionDomain in regionsDomain)
+            {
+                regionsDto.Add(new RegionDto()
+                {
+                    Id = regionDomain.Id,
+                    Code = regionDomain.Code,
+                    Name = regionDomain.Name,
+                    RegionImageUrl = regionDomain.RegionImageUrl
+                });
+            }
+
+            // Return DTOs
+            return Ok(regionsDto);
         }
 
         // GET: https://localhost:7139/api/Regions/D164CA1D-DEB7-4A77-86C5-FB9A7148C835
         [HttpGet]
         [Route("{Id:Guid}")]
-        public IActionResult GetById([FromRoute]Guid Id)
+        public IActionResult GetById([FromRoute] Guid Id)
         {
-            //var region = dbContext.Regions.FirstOrDefault(x => x.Id == Id);
-            var region = dbContext.Regions.Find(Id);
+            // Get data from database - Domain Model
+            //var regionDomain = dbContext.Regions.FirstOrDefault(x => x.Id == Id);
+            var regionDomain = dbContext.Regions.Find(Id);            
 
-            if (region == null)
+            if (regionDomain == null)
             {
                 return NotFound();
             }
 
-            return Ok(region);
+            // Map domain model to DTO
+            var regionDto = new RegionDto
+            {
+                Id = regionDomain.Id,
+                Code = regionDomain.Code,
+                Name = regionDomain.Name,
+                RegionImageUrl = regionDomain.RegionImageUrl
+            };
+
+            // Return DTO
+            return Ok(regionDto);
         }
     }
 }
