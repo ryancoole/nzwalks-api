@@ -1,21 +1,44 @@
-# README.md
+# 👨‍💻 Build ASP.NET Core Web API - Scratch To Finish (.NET8 API) 👨‍💻
 
-Use C# and Build an ASP.NET Core Web API with Entity Framework Core, SQL Server, Authentication, Authorization, .NET8. In this ASP.NET Core Web API course, you will learn and implement:
-- Understand REST APIs by creating a Web API using ASP.NET Core and .NET 7
-- Understand REST Principles
-- Understand Dependency Injection and Benefits
-- Creating New ASP.NET Core Web API Project
-- Understand .NET8 WEB API Project In .NET 8 and C#
-- Learn And Install Entity Framework Core (EF Core) In ASP.NET Core Web API Project
-- Learn Entity Framework Core Migrations
-- Understand the difference between Domain models and DTOs
-- Understand Domain Models and Repository Pattern
-- Use Swagger To Test ASPNET Core WEB API project
-- Learn How To Map Models To One Another Using Automapper
-- Learn Asynchronous Programming (Async Await)
-- Validate ASP.NET Core WEB API
-- Secure your ASP.NET Core Web API using Microsoft Identity by adding Authentication and Role-Based Authorization to your REST API.
-- Add JWT Authentication to ASP.NET Core Web API by creating JWT Tokens for API Clients.
-- Understand and Add Authentication and Authorization To ASP.NET Core API and Create Read and Write Users To Test this Via Postman
-- Incorporate ASP.NET JWT Authentication Into SwaggerUI
-- Add advanced functionality like Filtering, Sorting, and Pagination to your ASP.NET Core Web API.
+This is an extensive course on building ASP.NET Core Web APIs from scratch to a fully functional, production-ready state using .NET 8. This course has equipped me with the following skills and knowledge:
+
+## Key Skills Acquired
+
+### Core Concepts and Principles
+- **RESTful API Design:** Deep understanding of REST principles and best practices.
+- **Dependency Injection:** Expertise in implementing and leveraging Dependency Injection for better code maintainability and testability.
+
+### Hands-On Development Experience
+- **Project Initialization:** Proficiency in creating new ASP.NET Core Web API projects tailored for .NET 8.
+- **Entity Framework Core:** Skilled in integrating and using EF Core for database interactions, including setup and migrations.
+
+### Advanced API Functionality
+- **Domain Models vs. DTOs:** Clear understanding of the differences and appropriate usage scenarios.
+- **Repository Pattern:** Implementation of robust data access layers using the Repository Pattern.
+- **Automapper:** Efficient mapping between models and DTOs to streamline data handling.
+
+### Asynchronous Programming
+- **Async/Await:** Proficient in asynchronous programming to enhance application performance and responsiveness.
+
+### Security and Validation
+- **Input Validation:** Ensuring API reliability through comprehensive validation techniques.
+- **Authentication and Authorization:** Implementing secure APIs with Microsoft Identity, including JWT Authentication and Role-Based Authorization.
+- **JWT in SwaggerUI:** Enhancing API documentation and testing by integrating JWT Authentication into SwaggerUI.
+
+### Advanced API Features
+- **Filtering, Sorting, and Pagination:** Adding sophisticated data handling capabilities to APIs to improve client-side interaction.
+
+### Testing and Documentation
+- **Swagger Integration:** Utilizing Swagger for thorough API testing and documentation to ensure robust and user-friendly APIs.
+
+## Technologies and Tools
+- **C# and .NET 8**
+- **ASP.NET Core**
+- **Entity Framework Core**
+- **SQL Server**
+- **Microsoft Identity**
+- **Swagger**
+- **Automapper**
+- **Postman**
+
+This course has not only provided me with technical experience but also practical in developing, securing, and optimizing ASP.NET Core Web APIs.
