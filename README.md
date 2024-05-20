@@ -1,4 +1,4 @@
-# 👨‍💻 ASP.NET Core Web API Development - Mastery with .NET 8 👨‍💻
+# 👨‍💻 Build ASP.NET Core Web API - Scratch To Finish (.NET8 API) 👨‍💻
 
 This is an extensive course on building ASP.NET Core Web APIs from scratch to a fully functional, production-ready state using .NET 8. This course has equipped me with the following skills and knowledge:
 
