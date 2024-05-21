@@ -15,7 +15,8 @@ namespace NZWalks.API.Repositories
 
         public async Task<List<WalkDomain>> GetAllAsync()
         {
-            return await dbContext.Walks.ToListAsync();
+            // dbContext collects a list of all the walks and uses Include() to get related data from other tables
+            return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
         }
 
         public async Task<WalkDomain> CreateAsync(WalkDomain walkDomain)
