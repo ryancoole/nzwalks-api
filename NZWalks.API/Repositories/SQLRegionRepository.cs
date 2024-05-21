@@ -13,11 +13,38 @@ namespace NZWalks.API.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<RegionDomain> CreateAsync(RegionDomain region)
+        public async Task<List<RegionDomain>> GetAllAsync()
         {
-            await dbContext.Regions.AddAsync(region);
+            return await dbContext.Regions.ToListAsync();
+        }
+
+        public async Task<RegionDomain?> GetByIdAsync(Guid Id)
+        {
+            return await dbContext.Regions.FindAsync(Id);
+        }
+
+        public async Task<RegionDomain> CreateAsync(RegionDomain regionDomain)
+        {
+            await dbContext.Regions.AddAsync(regionDomain);
             await dbContext.SaveChangesAsync();
-            return region;
+            return regionDomain;
+        }
+
+        public async Task<RegionDomain?> UpdateAsync(Guid Id, RegionDomain regionDomain)
+        {
+            var existingRegion = await dbContext.Regions.FindAsync(Id);
+
+            if (existingRegion == null)
+            {
+                return null;
+            }
+
+            existingRegion.Code = regionDomain.Code;
+            existingRegion.Name = regionDomain.Name;
+            existingRegion.RegionImageUrl = regionDomain.RegionImageUrl;
+
+            await dbContext.SaveChangesAsync();
+            return existingRegion;
         }
 
         public async Task<RegionDomain?> DeleteAsync(Guid Id)
@@ -30,33 +57,6 @@ namespace NZWalks.API.Repositories
             }
 
             dbContext.Regions.Remove(existingRegion);
-            await dbContext.SaveChangesAsync();
-            return existingRegion;
-        }
-
-        public async Task<List<RegionDomain>> GetAllAsync()
-        {
-            return await dbContext.Regions.ToListAsync();
-        }
-
-        public async Task<RegionDomain?> GetByIdAsync(Guid Id)
-        {
-            return await dbContext.Regions.FindAsync(Id);
-        }
-
-        public async Task<RegionDomain?> UpdateAsync(Guid Id, RegionDomain region)
-        {
-            var existingRegion = await dbContext.Regions.FindAsync(Id);
-
-            if (existingRegion == null)
-            {
-                return null;
-            }
-
-            existingRegion.Code = region.Code;
-            existingRegion.Name = region.Name;
-            existingRegion.RegionImageUrl = region.RegionImageUrl;
-
             await dbContext.SaveChangesAsync();
             return existingRegion;
         }
