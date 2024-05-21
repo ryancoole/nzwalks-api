@@ -33,6 +33,24 @@ namespace NZWalks.API.Controllers
             return Ok(mapper.Map<List<WalkDto>>(walksDomain));
         }
 
+        // Get walk by ID
+        // GET: https://localhost:7139/api/walks/3CE74BD8-9C65-4817-0EF1-08DC79D5F21C
+        [HttpGet]
+        [Route("{Id:Guid}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid Id)
+        {
+            // Get data from database - Domain Model
+            //var regionDomain = dbContext.Regions.FirstOrDefault(x => x.Id == Id);
+            var walkDomain = await walkRepository.GetByIdAsync(Id);
+
+            if (walkDomain == null)
+            {
+                return NotFound();
+            }
+
+            // Map domain model to DTO and return the DTO
+            return Ok(mapper.Map<WalkDto>(walkDomain));
+        }
 
         // Create walk
         // POST: https://localhost:7139/api/walks
