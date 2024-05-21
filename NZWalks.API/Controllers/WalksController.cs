@@ -89,7 +89,7 @@ namespace NZWalks.API.Controllers
         }
 
 
-        // Delete walks
+        // Delete walk
         // DELETE: https://localhost:7139/api/walks/3CE74BD8-9C65-4817-0EF1-08DC79D5F21C
         [HttpDelete]
         [Route("{Id:Guid}")]
