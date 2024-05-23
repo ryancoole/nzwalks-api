@@ -13,19 +13,38 @@ namespace NZWalks.API.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<List<WalkDomain>> GetAllAsync(string? filterOn = null, string? filterQuery = null)
+        public async Task<List<WalkDomain>> GetAllAsync(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true)
         {
             // dbContext collects a list of all the walks and uses Include() to get related data from other tables
             //return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
 
             var walks = dbContext.Walks.Include("Difficulty").Include("Region").AsQueryable();
 
-            // Filtering
+            // Check if query string wants the filter results
             if (string.IsNullOrWhiteSpace(filterOn) == false && string.IsNullOrWhiteSpace(filterQuery) == false)
             {
+                // If filtering by Name field (ignore casing)
                 if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
+                    // Filter by filterQuery
                     walks = walks.Where(x => x.Name.Contains(filterQuery));
+                }
+            }
+
+            // Check if query string wants the sort results
+            if (string.IsNullOrWhiteSpace(sortBy) == false)
+            {
+                // If sorting by Name field (ignore casing)
+                if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    // If isAscending is true, ascend, otherwise descend.
+                    walks = isAscending ? walks.OrderBy(x => x.Name) : walks.OrderByDescending(x => x.Name);
+                }
+                // If sorting by LengthInKm field (ignore casing)
+                else if (sortBy.Equals("LengthInKm", StringComparison.OrdinalIgnoreCase))
+                {
+                    // If isAscending is true, ascend, otherwise descend.
+                    walks = isAscending ? walks.OrderBy(x => x.LengthInKm) : walks.OrderByDescending(x => x.LengthInKm);
                 }
             }
 
