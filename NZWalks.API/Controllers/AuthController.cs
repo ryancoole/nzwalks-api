@@ -11,7 +11,7 @@ namespace NZWalks.API.Controllers
     {
         private readonly UserManager<IdentityUser> userManager;
 
-        public AuthController(UserManager<IdentityUser> userManager) 
+        public AuthController(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
         }
@@ -29,7 +29,7 @@ namespace NZWalks.API.Controllers
 
             var identityResult = await userManager.CreateAsync(identityUser, registerRequestDto.Password);
 
-            if (identityResult.Succeeded) 
+            if (identityResult.Succeeded)
             {
                 if (registerRequestDto.Roles != null && registerRequestDto.Roles.Any())
                 {
@@ -44,6 +44,28 @@ namespace NZWalks.API.Controllers
             }
 
             return BadRequest("Something went wrong.");
+        }
+
+        // POST: https://localhost:7139/api/auth
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto  loginRequestDto)
+        {
+            var user = await userManager.FindByEmailAsync(loginRequestDto.Username);
+
+            if (user != null)
+            {
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDto.Password);
+
+                if (checkPasswordResult)
+                {
+                    // Create token
+
+                    return Ok();
+                }
+            }
+
+            return BadRequest("Username or password is incorrect.");
         }
     }
 }
