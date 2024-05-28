@@ -13,6 +13,7 @@ namespace NZWalks.API.Data
         public DbSet<DifficultyDomain> Difficulties { get; set; }
         public DbSet<RegionDomain> Regions { get; set; }
         public DbSet<WalkDomain> Walks { get; set; }
+        public DbSet<ImageDomain> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
