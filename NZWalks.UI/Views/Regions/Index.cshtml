@@ -16,6 +16,7 @@
             <th>Code</th>
             <th>Name</th>
             <th>RegionImageUrl</th>
+            <th> </th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,9 @@
                 <td>@region.Code</td>
                 <td>@region.Name</td>
                 <td>@region.RegionImageUrl</td>
+                <th>
+                    <a class="btn btn-light" asp-controller="Regions" asp-action="Edit" asp-route-id="@region.Id">Edit</a>
+                </th>
             </tr>
         }
     </tbody>
